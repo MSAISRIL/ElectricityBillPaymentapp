@@ -32,14 +32,12 @@ public class PaymentService implements IPaymentService {
 		Long billId = payment.getBillPayment().getBillId();
 		System.out.println("Bill ID:" + billId);
 		Optional<Bill> bill = billRepository.findById(billId);
-		Double amount = bill.get().getBillAmount();
 		//the status of the payment will be shown
 		payment.setStatus(PaymentStatus.SUCCESS);   
 		payment.setPaymentDate(new Date());
-		payment.setLatePaymentCharges(0.0);
-		payment.setTotalPaid(amount);
+		payment.setLatePaymentCharges(payment.getLatePaymentCharges());
+		payment.setTotalPaid(payment.getTotalPaid());
 		Payment savedPayment = paymentRepository.save(payment);
-	
 		return savedPayment.getStatus();
 	}
 
@@ -64,7 +62,5 @@ public class PaymentService implements IPaymentService {
 		} else {
 			return payment;
 		}
-
 	}
-
 }

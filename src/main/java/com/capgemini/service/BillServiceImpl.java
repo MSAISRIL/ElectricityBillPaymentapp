@@ -37,7 +37,8 @@ public class BillServiceImpl implements IBillService {
 		Double pricePerUnit = existingReading.getPricePerUnits();
 		Double unitsConsumed = existingReading.getUnitsConsumed();
 		bill.setBillDate(new Date());
-		
+		LocalDate d= LocalDate.now().plusDays(20);
+		bill.setBillDueDate(d);
 		bill.setBillForReading(existingReading);
 		bill.setUnitsConsumed(unitsConsumed);
 		bill.setBillAmount(pricePerUnit * unitsConsumed);

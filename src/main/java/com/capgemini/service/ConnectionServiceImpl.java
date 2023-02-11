@@ -33,13 +33,10 @@ public class ConnectionServiceImpl implements IConnectionService {
 
 		Customer customer = newConnection.getCustomerConnection();
 		Long userId = customer.getUserId();
-		Connection con = null;
+		Connection con;
 		if (userId == 0) {
 			newConnection.setConnectionDate(new Date());
-			Random random = new Random();
-			Integer randonNumber = random.nextInt(12);
-			Long random1 = (long) ((int) Math.random() * randonNumber);
-			System.out.println(random1);
+			Long random1 = (long)Math.abs(new Random().nextInt(1000000));
 			newConnection.setConsumerNumber(random1);
 			newConnection.setApplicationDate(new Date());
 			con = connectionRepository.save(newConnection);
@@ -47,7 +44,7 @@ public class ConnectionServiceImpl implements IConnectionService {
 			Customer existingCustomer = newConnection.getCustomerConnection();
 			newConnection.setCustomerConnection(existingCustomer);
 			newConnection.setConnectionDate(new Date());
-			newConnection.setConsumerNumber(new Random().nextLong() + new Random(1000).nextInt());
+			newConnection.setConsumerNumber((long)Math.abs(new Random().nextInt(1000000)));
 			newConnection.setApplicationDate(new Date());
 			con = connectionRepository.save(newConnection);
 
