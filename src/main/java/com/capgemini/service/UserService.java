@@ -1,5 +1,6 @@
 package com.capgemini.service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -79,7 +80,12 @@ public class UserService implements IUserService {
 	public User searchUserByUserId(int userId) throws NoSuchUserException {
 		return userRepository.findById((long) userId).orElseThrow(() -> new NoSuchUserException("No User Exists!"));
 	}
-	
+
+	@Override
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
+	}
+
 	/*
 	 * If user forget the password,he can change the password 
 	 */
@@ -89,6 +95,5 @@ public class UserService implements IUserService {
 		User u = userRepository.findByUserName(username).orElseThrow(() -> new Exception("No User found"));
 		return u.getPassword();
 	}
-
 
 }

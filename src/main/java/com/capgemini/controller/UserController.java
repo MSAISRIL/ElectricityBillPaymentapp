@@ -56,6 +56,11 @@ public class UserController {
 		String user ="Your password is : "+ userService.forgotPassword(username);
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
+
+	@GetMapping
+	public ResponseEntity<?> getAllUsers(){
+		return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+	}
 	
 
 }

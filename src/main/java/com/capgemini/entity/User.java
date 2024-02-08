@@ -9,6 +9,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 
 @Entity(name="users")
@@ -24,6 +26,8 @@ public class User {
 	private String userName;
 
 	@NotEmpty(message = "Please enter password")
+	@Pattern(regexp = "[A-Za-z0-9]+", message = "Password must contain at least one Capital Letter, one small letter and one Number")
+	@Size(min = 8, message = "Password should be minimum of length 8")
 	private String password;
 
 	public Long getUserId() {

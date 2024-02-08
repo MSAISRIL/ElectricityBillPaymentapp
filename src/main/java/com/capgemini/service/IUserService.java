@@ -3,6 +3,7 @@ import com.capgemini.entity.User;
 import com.capgemini.exception.DuplicateUserException;
 import com.capgemini.exception.InvalidLoginCredentialException;
 import com.capgemini.exception.NoSuchUserException;
+import java.util.*;
 
 public interface IUserService {
 
@@ -14,4 +15,6 @@ public interface IUserService {
 
 	public User searchUserByUsername(String username)throws NoSuchUserException;
 	public User searchUserByUserId(int userId)throws NoSuchUserException;
+
+    List<User> getAllUsers();
 }
